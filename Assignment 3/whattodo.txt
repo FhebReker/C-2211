@@ -1,0 +1,43 @@
+Files
+Suppose the command ls is unavailable. 
+What command could you use to view files in the current directory instead? 
+Explain why the command works?
+
+What option do I need to supply to the rm command to ensure I am prompted before a file or directory is removed? 
+What option do I need to supply to the rm command to ensure I am not prompted before a file or directory is removed? 
+What happens if both options are used simultaneously - which one has precedence?
+
+What are some differences between the rename command and the mv command?
+
+The file command, when run against an executable program shows ELF 64-bit LSB executable. 
+What does ELF mean in this context?
+
+Consider the empty file test.txt. 
+Why does ls -l test.txt say the filesize is 0 but du test.txt says the file size is 1?
+
+Directories
+Find a better way to do the following
+mkdir grandparent
+mkdir grandparent/parent
+mkdir grandparent/parent/child
+
+How do you create a directory with a space in it? 
+How do you remove a directory with a space in it?
+
+How do I create a directory and set its permissions to dr-x------ using only the mkdir command?
+
+Suppose I was working in /dir1/dir2/dir3 and I cd to /dir4/dir5/dir6. 
+What is an easy way to get back to /dir1/dir2/dir3 without using the explicit command cd /dir1/dir2/dir3 (perhaps I forgot what the full path name was).
+
+Suppose I used pushd to add 10 folders to my stack. How do I quickly determine which folder is the 6th folder in my stack, and how do I quickly cd to it?
+
+Permissions
+What option(s) do I need to add to chmod to print out what modifications are being made?
+
+What option(s) do I need to add to chown to get file2 ownership to simply match file1?
+
+What option(s) do I need to add to the stat command to display file permission, user ownership, and group ownership only?
+
+How do you grant a group permission to write data to a file but prevent the users in that group from moving, removing, or renaming the file?
+
+When using chmod in symbolic mode, what happens if u/g/o/a are omitted. e.g., chmod +x <filename>

@@ -1,0 +1,245 @@
+Assignment overview
+The 2211 Snackaroo launch date is fast approaching. 
+Your work on building snackaroo.c (Assignment 4) was a great start but it's time to build version 2.0. 
+The old version was missing a few important features:
+    You need to keep track of an arbitrary number of dishes, not just 100
+    There is no way to delete dishes
+    You need to keep a database of drivers as well
+    The program is a little large. It's time to break it up into individual files
+There is very little code from Assignment 4 which will be applicable for Assignment 5. 
+You should consider this to be a fresh assignment. 
+Don't try to back stitch Assignment 5 into your existing Assignment 4.
+
+
+
+
+Design
+As before, each dish will be stored as a structure with the following attributes:
+    Dish code (eg. 0, 1, 2, 3, 4, etc.)
+        Each dish code must be positive and unique. 
+        Only integers are acceptable. 
+        There is no limit to the number of dishes the database can hold (except memory on the system)
+    Dish name (eg. "Spicy Chicken Sandwich", "Kafta Sandwich", "Magic Mushroom Melt", "Brie Burger", "Large 3 Topping Pizza", etc.)
+        Only dish names up to 100 characters in length are acceptable (including the null character - So think of this as 99+1).
+    Restaurant name (eg. "El Furniture Warehouse", "Barakat Restaurant", "The WORKS Craft Burgers & Beer", "Campus Hi-Fi", "Stobie's Pizza", etc.)
+        Only restaurant names up to 100 characters in length are acceptable (including the null character - So think of this as 99+1).
+    Average Customer Rating out of 10 (eg. 0.3, 6.5,8.3, 4.9, etc.)
+        Only float values between 0.0-10.0 are acceptable. 
+        In all reading/writing, consider only one decimal point.
+    Price (eg. $5.35, $16.50,$18.30, $42.90, etc.)
+        Only positive floats are acceptable. 
+        In all reading/writing, consider only two decimal points.
+
+Now, you will also need to store each delivery driver as a structure with the following attributes:
+    Driver code (eg. 0, 1, 2, 3, 4, etc.)
+        Each driver code must be positive and unique. 
+        Only integers are acceptable. 
+        There is no limit to the number of drivers the database can hold (except memory on the system)
+    Driver name (eg. "Al Dente", "Sue Shi", etc.)
+        Only names up to 50 characters in length are acceptable (including the null character - So think of this as 49+1)
+    Vehicle colour
+        Only the colours "red", "green", "blue", "grey", "white", "black", and "other" are acceptable. 
+        To simplify user input, use the integers 0 - 6 to represent one of the 7 possible colours (0 == "red", 1 == "green", etc.).
+    Licence Plate
+        Only 2-8 alphanumeric characters and space are acceptable
+
+Your program will then use a linked list of structures to represent all dishes and a linked list of structures to represent all drivers.
+
+
+
+
+Implementation
+Your program should continuously prompt the user for one of four possible commands:
+
+    Print help (using command h)
+        Print a simple message or messages describing how to use the program.
+    Quit (using command q)
+        Quit the program. Yes, all data is lost when quitting your program. 
+        You do not need to maintain the data across multiple runs.
+    Control dishes (using command m)
+        See below
+    Control drivers (using command a)
+        See below
+
+
+
+Dishes
+As in snackaroo.c (Assignment 4) all the same commands exist as before:
+
+    Insert a new dish (using the command i)
+        Prompt the user for the dish code
+            Assume the user will enter one integer
+            This must be unique in your database and cannot conflict with an existing dish code. 
+            If the number is less than 0, or if there is a conflict with an existing code, or if the database is full, tell the user the error. 
+            The user can try again or you can return the user to the main prompt
+        Prompt the user for the name of the dish
+            Assume the user will enter a string of characters of any length
+            If the dish name is longer than the acceptable length, you should accept as many characters as you can and ignore any additional characters. 
+            If there is any other issue, tell the user the error. 
+            The user can try again or you can return the user to the main prompt.
+        Prompt the user for the name of the restaurant
+            Assume the user will enter a string of characters of any length
+            If the dish name is longer than the acceptable length, you should accept as many characters as you can and ignore any additional characters. 
+            If there is any other issue, tell the user the error. 
+            The user can try again or you can return the user to the main prompt.
+        Prompt the user for the dish rating
+            Assume the user will enter one float value with one decimal point
+            If the rating is not in the range 0.0-10.0, the user can try again or you can return the user to the main prompt
+        Prompt the user for the dish price
+            Assume the user will enter one float value with two decimal points
+            If the price is not a positive float value, the user can try again or you can return the user to the main prompt
+    Search for a dish in the database and print it out (using the command s)
+        Prompt the user for the dish code
+            If the dish code is found, print out all the values for this dish only (see the print command below for more details)
+            If the dish code is not found, tell the user the error. 
+            The user can try again or you can return the user to the main prompt
+    Update a dish in the database (using the command u)
+        Prompt the user for the dish code
+            If the dish code is found, prompt the user to update all the values for the dish (see the insert command above for details)
+            If the dish code is not found, tell the user the error. 
+            The user can try again or you can return the user to the main prompt
+    Print the entire list of dishes (using the command p)
+        Print out a table listing all the dishes in your database with all the attributes:
+            Dish Code
+            Dish Name
+            Restaurant Name
+            Dish Rating
+            Dish Price
+
+    You should implement one additional command:
+    Erase dish (using command e)
+        Prompt the user for the dish code
+            If the dish code is found, erase the dish safely by removing the element from the linked list and freeing the memory
+            If the dish code is not found, tell the user the error. 
+            The user can try again or you can return the user to the main prompt
+
+
+
+
+Drivers
+Implement the following commands:
+
+    Insert a new driver (using command i)
+        Prompt the user for the driver code
+            Assume the user will enter one integer
+            This must be unique in your database and cannot conflict with an existing driver code. 
+            If there is a conflict with an existing code, or if the database is full (you cannot allocate any more memory), tell the user the error. 
+            The user can try again or you can return the user to the main prompt
+        Prompt the user for the name of the driver
+            Assume the user will enter a string of characters of any length
+            If the driver name is longer than the acceptable length, you should accept as many characters as you can and ignore any additional characters. 
+            If there is any other issue, tell the user the error. 
+            The user can try again or you can return the user to the main prompt
+        Prompt the user for the vehicle colour
+            Assume the user will enter one colour
+            If the integer does not match one of the colours, tell the user the error. 
+            The user can try again or you can return the user to the main prompt
+        Prompt the user for the licence plate of the driver
+            Assume the user will enter only alphanumeric characters or spaces
+            If the input string contains a non-alphanumeric character that is not a space, tell the user the error. 
+            The user can try again or you can return the user to the main prompt.
+    Search for a driver in the database and print it out (using command s)
+        Prompt the user for the driver code
+            If the driver code is found, print out all the values for this driver only (see the print command below for more details)
+            If the driver code is not found, tell the user the error.
+            The user can try again or you can return the user to the main prompt
+    Update a driver in the database (using command u)
+        Prompt the user for the driver code
+            If the driver code is found, prompt the user to update all the values for the driver (see the insert command above for details)
+            If the driver code is not found, tell the user the error. 
+            The user can try again or you can return the user to the main prompt
+    Print the entire list of drivers (using command p)
+        Print out a table listing all the drivers in your database with all the attributes:
+            Driver Code
+            Driver Name
+            Vehicle colour
+            License Plate
+    Erase driver (using command e)
+        Prompt the user for the driver code
+            If the driver code is found, erase the driver safely by removing the element from the linked list and freeing the memory
+            If the driver code is not found, tell the user the error. 
+            The user can try again or you can return the user to the main prompt
+
+
+
+Other implementation notes
+You are welcome to create any number of helper functions you wish
+You are welcome to use any C libraries you wish but you should be able to get by with stdio.h, stdlib.h, and string.h
+You are welcome to use whatever wording you would like for your prompts. 
+It does not have to precisely match the example below.
+
+
+
+Sample output
+Refer to Assignment 4 for a sample output. 
+Apply the same principles for the driver portion of your database.
+
+
+
+
+Program structure
+Your program should consist of the following structure:
+
+251xxxxxx-Assignment5
+   |-------- snackaroo.h         <--- Header containing macros and definitions for snackaroo.c
+   |-------- snackaroo.c         <--- The main program
+   |-------- snackaroo_dish.h    <--- Header containing macros and definitions for dishes
+   |-------- snackaroo_dish.c    <--- The program containing all the functions used to manage dishes
+   |-------- snackaroo_driver.h  <--- Header containing macros and definitions for drivers
+   |-------- snackaroo_driver.c  <--- The program containing all the functions used to manage drivers
+   |-------- Makefile            <--- A Makefile allowing the user to compile all or part of your program
+   |-------- snackaroo.png       <--- A screenshot(s) demonstrating your program
+See also the attached diagram.
+
+
+
+This is challenging...
+    Refer to the attached diagram showing how your program should be laid out.
+    Refer to Chapter 15 - Writing Large Programs for direction on how to build a Makefile
+    Refer to Chapter 17 - Advanced uses of pointers for direction on how to manage Linked Lists in C
+
+
+
+This is easy!
+For a 5% bonus, you may implement one of two advanced functions. 
+For a 10% bonus, you may implement both advanced functions:
+
+    Include a third structure called dish_driver_code (+5%). This structure will tell us if a specific driver delivered a specific dish.
+        This structure will have the following attributes:
+            Dish code (eg. 0, 1, 2, 3, 4, etc.)
+                Only dish codes that are already found in the database are acceptable
+            Driver code (eg. 0, 1, 2, 3, 4, etc.)
+                Only driver codes that are already found in the database are acceptable
+        Add a fifth main menu command called r. 
+        All the prompts for this command follow the same approach as m for dish and a for driver. 
+        That is:
+            Insert a new dish/driver relationship
+                Due to referential integrity, the dish code entered by the user must already exist as a valid dish in your database. 
+                In other words, a driver cannot be a member of a dish which doesn't exist yet.
+                Due to referential integrity, the driver code entered by the user must already exist as a valid driver in your database. 
+                In other words, a dish cannot have a driver which doesn't exist yet.
+            (Update an existing dish/driver relationship)
+                Because there are no extra attributes to this relationship to update, you do not need to implement this function. 
+                The user can just remove a relationship and insert a new one instead.
+            Search for dish/driver relationship
+                Prompt the user for a relationship code. 
+                Print out the dish and driver codes on that relationship
+            Print all
+                Print all relationships in your database and the associated dish and driver codes
+            Print all dishes for a driver
+                Prompt the user for a driver id, print out all the dish attributes for this driver
+            Print all drivers for a dish
+                Prompt the user for a dish id, print out all the driver attributes for this dish
+            Remove an existing dish/driver relationship
+        Other rules
+        Due to referential integrity, it should not be possible to remove a dish after a dish/driver relationship is created. 
+        It should not be possible to remove a driver after a dish/driver relationship is created. 
+        The user must first remove all relationships, then they can remove the dish or the driver.
+    Include the ability to dump and restore the database (+5%)
+        For the dish menu, driver menu, and dish/driver menu (if you implement this), add two new commands called d (dump) and r (restore).
+            To dump the database
+                Prompt the user for the output file. 
+                Use the fwrite() function to write all nodes in your database to the file
+            To restore the database
+                Prompt the user for the input file. 
+                Use the fread() function to read all nodes in your file and add them to the database

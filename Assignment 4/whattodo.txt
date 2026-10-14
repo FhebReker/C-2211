@@ -1,0 +1,159 @@
+Purpose
+This assignment will ask you to apply the following concepts from class:
+
+Continue to learn to work with I/O in C.
+Continue to learn to work with expressions, control statements, and loops in C.
+Continue to learn to work with arrays in C.
+Continue to learn to work with strings in C.
+Continue to learn to write your own functions in C.
+Learn to work with variable scope in C.
+Learn to work with a static data structure in C.
+
+
+
+
+
+
+
+
+Assignment overview
+Congratulations on accepting your new position as lead developer and 
+database admin for the 2211 Snackaroo app, a startup food delivery 
+service for London and the surrounding area. As the resident C expert, 
+you have been assigned the task of designing and implementing a database 
+that tracks all orders which customers place using the app.
+
+
+
+Design
+To accomplish this task, each order will be stored as a 
+structure with the following attributes:
+
+Dish code (e.g., 0, 1, 2, 3, 4, etc.)
+    Each dish code must be positive and unique. 
+    Only integers are acceptable.
+Dish name (e.g., "Spicy Chicken Sandwich", "Kafta Sandwich", "Magic Mushroom Melt", "Brie Burger", "Large 3 Topping Pizza", etc.)
+    Only dish names up to 100 characters in length are acceptable 
+    (including the null character - so think of this as 99+1).
+Restaurant name (e.g., "El Furniture Warehouse", "Barakat Restaurant", "The WORKS Craft Burgers & Beer", "Campus Hi-Fi", "Stobie's Pizza", etc.)
+    Only restaurant names up to 100 characters in length are acceptable 
+    (including the null character - so think of this as 99+1).
+Average Customer Rating out of 10 (e.g., 0.3, 6.5,8.3, 4.9, etc.)
+    Only float values between 0.0-10.0 are acceptable. 
+    In all reading/writing, consider only one decimal point.
+Price (e.g., $5.35, $16.50,$18.30, $42.90, etc.)
+    Only positive floats are acceptable. 
+    In all reading/writing, consider only two decimal points.
+
+Your program will then use an array of structures to represent up to 100 possible dishes that are offered to customers.
+
+
+
+Implementation
+Your program should continuously prompt the user for 
+one of five possible commands:
+
+Insert a new dish (using the command, i).
+    Prompt the user for the dish code.
+        Assume the user will enter one integer.
+        This must be unique in your database and cannot conflict with an existing dish code. 
+        If the number is less than 0, or if there is a conflict with an existing code, or if the database is full, tell the user the error. 
+        The user can try again or you can return the user to the main prompt.
+    Prompt the user for the name of the dish.
+        Assume the user will enter a string of characters of any length.
+        If the dish name is longer than the acceptable length, you should accept as many characters as you can and ignore any additional characters. 
+        If there is any other issue, tell the user the error. 
+        The user can try again or you can return the user to the main prompt.
+    Prompt the user for the name of the restaurant.
+        Assume the user will enter a string of characters of any length.
+        If the dish name is longer than the acceptable length, you should accept as many characters as you can and ignore any additional characters. 
+        If there is any other issue, tell the user the error. 
+        The user can try again or you can return the user to the main prompt.
+    Prompt the user for the dish rating.
+        Assume the user will enter one float value with one decimal point.
+        If the rating is not in the range 0.0-10.0, the user can try again or you can return the user to the main prompt.
+    Prompt the user for the dish price.
+        Assume the user will enter one float value with two decimal points.
+        If the price is not a positive float value, the user can try again or you can return the user to the main prompt.
+
+Search for a dish in the database and print it out (using the command, s).
+    Prompt the user for the dish code.
+        If the dish code is found, print out all the values for this dish only. 
+        (See the print command below for more details.)
+        If the dish code is not found, tell the user the error. 
+        The user can try again or you can return the user to the main prompt.
+
+Update a dish in the database (using the command, u).
+    Prompt the user for the dish code.
+        If the dish code is found, prompt the user to update all the values for the dish. 
+        (See the insert command above for details.)
+        If the dish code is not found, tell the user the error. 
+        The user can try again or you can return the user to the main prompt.
+
+Print the entire list of dishes(using the command, p).
+    Print out a table listing all the dishes in your database with all the attributes:
+        Dish Code
+        Dish Name
+        Restaurant Name
+        Dish Rating
+        Dish Price
+
+Quit the program (using the command, q).
+    Yes, all data is lost when quitting your program. 
+    You do not need to maintain the data across multiple runs.
+
+
+
+Other implementation notes
+    You are welcome to create any number of helper functions you wish.
+    You are welcome to use any C libraries you wish
+    Note that there is no delete function. This is not an easy task when using an array.
+    You are welcome to use whatever wording you would like for your prompts. 
+    It does not have to precisely match the example below.
+    (See attached photo for example)
+
+
+
+
+
+
+
+
+Testing
+    You should test your program by compiling and running it on GAUL before submitting. 
+    (This is how the TA will be testing your program.) 
+    Capture the screen of your testing using screenshots. 
+    Demonstrate your program works with at least two runs using different input.
+
+
+
+
+
+
+
+
+Submitting
+    When you are finished your assignment, follow these steps:
+        Cite your work: 
+            Did you use code that you did not write yourself? 
+            Just like an essay, if you did not write it yourself, you must properly attribute the author. 
+            Leveraging existing code for your assignment is acceptable, but it should represent a minor portion of your submission. 
+            Specifically, any code that fulfills the learning outcomes detailed in the Purpose section above should be almost entirely your own. 
+            Contact the course instructor if you are unsure.
+        If you used sample code from the course notes or the textbook, then in the comments, state which sample program you used or which page(s) from the lecture notes you used.
+        If you used code from an online source (e.g., StackOverflow, GeeksForGeeks, etc.), then in the comments, provide the link where the code was found.
+        If you used an LLM such as ChatGPT ("Vibecoding"), then in the comments, provide the link to the prompts you used to generate the code.
+        Using code from another student is a violation of the policy on academic integrity and is not permitted.
+        Remove any compiled programs and other files you may have. You should have exactly one C program in a directory called 251xxxxxx-Assignment4 where 251xxxxxx is your student number.
+        Upload your screenshots to GAUL. Place them in your Assignment 4 directory where your C programs are located. Your directory structure should look like this:
+            251xxxxxx-Assignment4
+            |-------- snackaroo.png
+            |-------- snackaroo.c
+        If necessary, run the follow command to get out of the 251xxxxxx-Assignment4 directory:
+            cd ..
+        Package your assignment into a tarball: tar -cvf 251xxxxxx-Assignment4.tar 251xxxxxx-Assignment4
+        Verify the contents of your tarball (tar -tvf 251xxxxxx-Assignment4.tar) (du -sh 251xxxxxx-Assignment4.tar). 
+            If your tarball is 10 KB in size then you are missing something, and you made an error on this step. 
+            Make sure you are properly creating your tarball with the right files in it.
+        Use an SFTP program to download the tarball and then upload it to OWL.
+        Submit the single tarball called 251xxxxxx-Assignment4.tar in OWL.

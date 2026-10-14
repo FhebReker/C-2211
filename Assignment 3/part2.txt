@@ -1,0 +1,58 @@
+1. Files
+a) 
+You could use the command "find . -maxdepth 1"
+find works here since it starts in the current directory (.) and -maxdepth displays files under 1 level, which means it looks only at the files in the current directory
+
+b)
+You'd use "rm -i [file name here]" to prompt before removal, and "rm -f [file name here]" to force a file removal
+When you use both at the same time, the option that comes latest has the highest priority ("rm -f -i [file name here]" will prompt before removal, whereas "rm -i -f [file name here]" will not )
+
+c) 
+"rename [part to be replaced] [part that replaces] [files that will be modified]" replaces any occurances of the first part with the second part for all files after the first two 
+"mv [file(s) to move] [destination file/folder]" will only rename files if a single file is used in the first argument, any more files will instead move files into the destination folder and not rename them
+
+d) 
+ELF here means "Executable and Linkable Format", a standard file format for executable files and object code since it signifies it being able to be linked and executed
+ 
+e)
+"ls -l test.txt" shows the actual size of the file in bytes, whereas "du test.txt" shows the disc space (1 block ~ 512 bytes on GAUL system) test.txt has reserved for use rounded up
+
+
+
+2. Directories
+a) 
+mkdir -p grandparent/parent/child
+
+b) 
+You can either use quotes ('' or "", not a difference) or backslash and space (\ ) to create a directory with a space
+To delete one with a space, you do the same, but with rmdir (if empty) or rm -reads
+
+c)
+mkdir -m 500 [name of directory]
+
+d)
+Assuming /dir1/dir2/dir3 is an ancestor folder to /dir4/dir5/dir6, then you could use "cd -" to go back to /dir1/dir2/dir3
+
+e)
+You'd use "dirs -v" to show the current list and their indices, where index 0 is the current directory
+To move to the 6th index, you'd run "pushd +6" 
+
+
+
+3. Permissions
+a)
+You'd add the "-v" ("chmod -v [edits] [file]") or the option "-c" ("chmod -c [edits] [file]") option to report the modifications made
+
+b)
+You'd use the option "--reference=[file]" ("chown --reference=file1 file 2") to get the ownerships to match
+
+c)
+You'd use the format option "-c" followed by the format sequences "%A %U %G" (stat -c "%A %U %G" [file])
+
+d)
+chown [curent owner]:[group] [file]
+chmod g+rw [file]
+chmod g-w, g+rx [directory] 
+
+e)
+It gives everyone that permission and treats the ommision like "a" (in the example given, user, group and other are all given executable privilege)
