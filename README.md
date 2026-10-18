@@ -252,4 +252,4 @@ Potential future enhancements include:
 - Multithreaded applications
 - Client-server architectures
 - Linux systems programming
-- Operating systems development1
+- Operating systems development
